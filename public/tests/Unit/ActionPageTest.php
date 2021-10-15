@@ -3,7 +3,7 @@ use PHPUnit\Framework\TestCase;
 require(__DIR__."/../../ActionPage.php");
 
 /*
-Run test from home directory: ./vendor/bin/phpunit ./di/cf/public/tests/Unit/ActionPageTest.php
+Run test from home directory: ./vendor/bin/phpunit ./public/tests/Unit/ActionPageTest.php
 */
 
 
