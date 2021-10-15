@@ -1,9 +1,9 @@
 <?php
 use PHPUnit\Framework\TestCase;
-require("/var/www/html/di/cf/public/ActionPage.php");
+require(__DIR__."/../../ActionPage.php");
 
 /*
-Run test from home directory: ./di/cf/vendor/bin/phpunit ./di/cf/public/tests/Unit/ActionPageTest.php
+Run test from home directory: ./vendor/bin/phpunit ./di/cf/public/tests/Unit/ActionPageTest.php
 */
 
 
