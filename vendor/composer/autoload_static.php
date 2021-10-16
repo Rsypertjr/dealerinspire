@@ -76,7 +76,13 @@ class ComposerStaticInit83bbd1173377de571e1f7f1f1d0ee164
     );
 
     public static $classMap = array (
+        'ActionPage' => __DIR__ . '/../..' . '/public/ActionPage.php',
+        'ActionPageTest' => __DIR__ . '/../..' . '/public/tests/Unit/ActionPageTest.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'DataTest' => __DIR__ . '/../..' . '/public/tests/Unit/exampletests/DataTest.php',
+        'DependTest' => __DIR__ . '/../..' . '/public/tests/Unit/exampletests/DependTest.php',
+        'EqualsTest' => __DIR__ . '/../..' . '/public/tests/Unit/exampletests/EqualsTest.php',
+        'ExampleTest' => __DIR__ . '/../..' . '/public/tests/Unit/exampletests/ExampleTest.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit\\Framework\\ActualValueIsNotAnObjectException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Exception/ActualValueIsNotAnObjectException.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert.php',
@@ -694,6 +700,7 @@ class ComposerStaticInit83bbd1173377de571e1f7f1f1d0ee164
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'SetupTest' => __DIR__ . '/../..' . '/public/tests/Unit/exampletests/SetupTest.php',
         'TheSeer\\Tokenizer\\Exception' => __DIR__ . '/..' . '/theseer/tokenizer/src/Exception.php',
         'TheSeer\\Tokenizer\\NamespaceUri' => __DIR__ . '/..' . '/theseer/tokenizer/src/NamespaceUri.php',
         'TheSeer\\Tokenizer\\NamespaceUriException' => __DIR__ . '/..' . '/theseer/tokenizer/src/NamespaceUriException.php',
@@ -702,6 +709,7 @@ class ComposerStaticInit83bbd1173377de571e1f7f1f1d0ee164
         'TheSeer\\Tokenizer\\TokenCollectionException' => __DIR__ . '/..' . '/theseer/tokenizer/src/TokenCollectionException.php',
         'TheSeer\\Tokenizer\\Tokenizer' => __DIR__ . '/..' . '/theseer/tokenizer/src/Tokenizer.php',
         'TheSeer\\Tokenizer\\XMLSerializer' => __DIR__ . '/..' . '/theseer/tokenizer/src/XMLSerializer.php',
+        'objectData' => __DIR__ . '/../..' . '/public/objectData.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -1,30 +1,27 @@
 <?php
 use PHPUnit\Framework\TestCase;
-require(__DIR__."/../../ActionPage.php");
+
+require __DIR__."/../../vendor/autoload.php";
+/*
+// Manual file autoloading
+function custom_autoloader($class){
+    include __DIR__."/../../../public/". $class . ".php";
+}
+// using custom autoloader
+spl_autoload_register('custom_autoloader');
+*/
+
 
 /*
-Run test from home directory: ./vendor/bin/phpunit ./public/tests/Unit/ActionPageTest.php
+Run test from home directory: ./vendor/bin/phpunit ./public/tests/ActionPageTest.php
+                              ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php ./public/tests
+                              ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php --testsuite unittests
 */
 
 
 class ActionPageTest extends TestCase
 {
-    //protected $obj;
-  //  protected function setUp():void
-    //{
-        
-     //   $this->$obj = [
-         /*   'fullname' => 'dummy name',
-            'email' => 'dummy@email.com',
-            'phone' => '000-000-0000',
-            'message' => 'dummy message',
-            'servername' =>'localhost',
-            'username' => 'rlsjr',
-            'password' => 'Sypert1234!',
-            'dbname' => 'dealerinspire' */
-     //   ];
-   // }
-
+    
    protected $obj;
    protected function setUp():void
    {
@@ -43,21 +40,19 @@ class ActionPageTest extends TestCase
         
 
    }
+
+   /*
     public function testContact() : void
     {
       
         // Test Record Insertion in Database
-        $action_page = new ActionPage();
+        $action_page = new ActionPage($this->obj);
         $this->obj = $action_page->make_contact($this->obj);
         $this->assertStringContainsString('New record created',$this->obj->output);
 
-        $conn = new mysqli($this->obj->servername, $this->obj->username, $this->obj->password, $this->obj->dbname);
-        // Check connection
-        if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-        }
-
-        
+        $db = new MySqlDb($this->obj);
+        $conn = $db->openDbConnection($this->obj);
+                
         //  Remove Test Record
         $sql = "DELETE FROM Contacts ".
         " WHERE fullname = '" . $this->obj->fullname . "' AND email = '" . $this->obj->email .
@@ -73,10 +68,33 @@ class ActionPageTest extends TestCase
         $this->assertStringContainsString('Record Deleted',$mess);
     }
 
+    */
+
+    public function testContactwithStub() : void
+    {      
+        // Test Record Insertion in Database
+        $action_page = new ActionPage($this->obj);
+        $this->obj = $action_page->make_contact($this->obj);
+        $this->assertStringContainsString('New record created',$this->obj->output);
+
+        // Create stub for the MySqlDb class.
+        $stub = $this->createStub(MySqlDb::class);
+
+        // Configure stub
+        $stub->method('openDbConnection')
+             ->willReturn('Record Deleted');
+
+        //$conn->close();
+        $this->assertStringContainsString('Record Deleted',$stub->openDbConnection());
+    }
+
+
+
+
     public function testEmail() : void
     {
         // Test Sending of Email
-        $action_page = new ActionPage();
+        $action_page = new ActionPage($this->obj);
         $this->obj = $action_page->send_email($this->obj);
         $this->assertStringContainsString('Message has been sent',$this->obj->output);
     }

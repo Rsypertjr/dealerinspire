@@ -1,4 +1,3 @@
-
 <?php
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
@@ -9,41 +8,43 @@ use PHPMailer\PHPMailer\SMTP;
 //Load Composer's autoloader
 require __DIR__.'/../vendor/autoload.php';
 require('objectData.php');
-
+require('MySqlDb.php');
 
 
 class ActionPage{
 
-    function __construct() {
+    private $conn;
+    private $db;
+
+    function __construct($obj) {
+            $this->db = new MySqlDb($obj);
+            $this->conn = $this->db->openDbConnection();
           }
-
-
-      public function make_contact($obj){
-         // Create connection
-        $conn = new mysqli($obj->servername, $obj->username, $obj->password, $obj->dbname);
-        // Check connection
-        if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-        }
-
-        
+      
+      
+      
+    public function make_contact($obj){
+       
+        $this->conn = $this->db->openDbConnection($obj);
         
         $sql = "INSERT INTO Contacts (fullname, email, phone, message)".
         " VALUES('$obj->fullname','$obj->email','$obj->phone','$obj->message')";
 
-        if ($conn->query($sql) === TRUE) {
+        if ($this->conn->query($sql) === TRUE) {
             $obj->output .= "New record created successfully";
         } else {
             $obj->output .= "<br>Error: " . $sql . "<br>" . $conn->error;
         }
 
-        $conn->close();
+        $this->conn->close();
 
         return $obj;
 
       }
 
-    function send_email($obj){
+  
+
+    public function send_email($obj){
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
 
@@ -127,8 +128,11 @@ if (isset($_POST['fullname'])) {
     $obj->password = 'Sypert1234!';
     $obj->dbname = 'dealerinspire';
     $obj->output = '';
-    $obj2 = new objectData($obj);
-    $action_page = new ActionPage();
+
+    //$obj2 = new objectData($obj);
+
+    $action_page = new ActionPage($obj);
+
     $obj3 = $action_page->make_contact($obj2);
     $obj4 = $action_page->send_email($obj3);
     echo $obj4->output;
