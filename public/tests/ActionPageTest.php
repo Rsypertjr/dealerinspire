@@ -70,7 +70,7 @@ class ActionPageTest extends TestCase
 
     */
 
-    public function testContactwithStub() : void
+    public function testContactwithMySqlDbStub() : void
     {      
         // Test Record Insertion in Database
         $action_page = new ActionPage($this->obj);
