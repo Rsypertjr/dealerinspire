@@ -71,3 +71,15 @@ You should have PHPUnit-compatible unit tests for your application.
 Provide either a database schema file or a programmatic way of creating your database / tables.
  
 The completed work is available in a public git repository for us to checkout and review.
+
+# Composer
+Composer dependency management tool for PHP is used.  Please see 'https://getcomposer.org/'.
+
+# Database Migration
+The following command from the home/working directory should set up the database: 'php migrate_tables.php'
+Please adjust credentials within file.
+
+# PHPUnit testing
+The following command from the homw/working directory should run the suite of unit tests that were also used for code developement: 
+'./vendor/bin/phpunit --bootstrap ./vendor/autoload.php --testsuite unittests'.  Please see the top-of-file comments of the 
+'/public/tests/ActionPageTest.php' file for more command otions.
